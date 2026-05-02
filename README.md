@@ -140,15 +140,14 @@ False
 
 ## Part 2. The Game [35 Points]
 
-With the helper functions in place, you will now implement the main game logic inside `word_scramble(secret_word)`. This function takes the secret word as its only parameter and runs the full interactive game, making use of `input_check()`, `has_player_won()`, and `get_word_progress()` from Part 1.
+With the helper functions in place, you will now implement the main game logic inside `word_scramble()`. This function runs the full interactive game, making use of `input_check()`, `has_player_won()`, and `get_word_progress()` from Part 1.
 
 ### Task 2.1 — Game Setup [10 Points]
 
-Before the game loop begins, set up the game as follows:
+Before the game loop begins, the function loads `words.txt` into a list of words, `word_list`. Continue set up the game as follows:
 
-1. Use `load_words()` to load the word list from `words.txt`.
-2. Select a random word using `choose_word()` and display its scrambled version using `scramble_word()`.
-3. Print a welcome message and inform the user how many attempts they have.
+1. Select a random word using `choose_word()` and display its scrambled version using `scramble_word()`.
+2. Print a welcome message and inform the user how many attempts they have.
 
 ***Example output.***
 
