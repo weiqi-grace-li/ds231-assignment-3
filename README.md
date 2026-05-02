@@ -144,7 +144,7 @@ With the helper functions in place, you will now implement the main game logic i
 
 ### Task 2.1 — Game Setup [10 Points]
 
-Before the game loop begins, the function loads `words.txt` into a list of words, `word_list`. Continue set up the game as follows:
+Before the game loop begins, the function loads `words.txt` into a list of words, `word_list`. Continue setting up the game as follows:
 
 1. Select a random word using `choose_word()` and display its scrambled version using `scramble_word()`.
 2. Print a welcome message and inform the user how many attempts they have.
