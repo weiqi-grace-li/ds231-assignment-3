@@ -4,10 +4,10 @@
 In this assignment, you will build a word-guessing game called *Word Scramble*. The primary goal is to practice writing and calling functions in Python. You will also learn how to break down a complex computational task into smaller, manageable parts by creating helper functions.
 
 ## Instructions
-1. All your code goes into `word_scramble.py`, the starter file provided in the repository. No need to create any new Python files.
+1. All your code goes into `word_scramble.py`, the starter file provided in the repository. No need to create any new Python files. The only functions you need to implement are `input_check()`, `has_player_won()`, `get_word_progress()`, and `word_scramble()`. Do not modify or delete the `if __name__ == "__main__":` block at the bottom of the file — this is a standard Python construct that runs the game automatically when you execute the script directly, and the starter code relies on it to launch `word_scramble()`.
 2. Ensure that your program runs without errors. If your code fails to execute, a flat 20% point deduction will be applied, regardless of the nature of the error.
 3. For Part 1, correctness is graded based on your functions' return values. To be eligible for partial credit, implement the intermediate variables indicated in ***Function specification*** so that we can identify which parts of your function are working correctly.
-4. For Part 2, correctness is graded based on what your program prints to the terminal, as in previous assignments. Make sure your output matches the ***Example output*** exactly.
+4. For Part 2, correctness is graded based on what your program prints to the terminal, as in previous assignments. Make sure your output matches the ***Example output*** exactly. Note that our grading environment requires `secret_word` - see details in Task 2.1.  
 5. Start early. This assignment involves building a complete interactive game with multiple components. It will likely take more time than previous assignments, so plan accordingly.
 
 
@@ -77,7 +77,7 @@ Here is a summary of all six functions for reference:
 ***Function specification.***
 - Input: `secret_word` (str)
 - Return: the cleaned, valid guess (str)
-- Intermediate variables for partial credit: `guess_cleaned` — a string containing only the letter characters from the raw input [10 pt], all in lowercase [10 pt]
+- Intermediate variables for partial credit: `guess_cleaned` — a string containing only the letter characters from the raw input [10 pt], all in lowercase [5 pt]
 
 ***Function demonstration.***
 
@@ -142,12 +142,13 @@ False
 
 With the helper functions in place, you will now implement the main game logic inside `word_scramble()`. This function runs the full interactive game, making use of `input_check()`, `has_player_won()`, and `get_word_progress()` from Part 1.
 
-### Task 2.1 — Game Setup [10 Points]
+### Task 2.1 — Game Setup [15 Points]
 
 Before the game loop begins, the function loads `words.txt` into a list of words, `word_list`. Continue setting up the game as follows:
 
-1. Select a random word using `choose_word()` and display its scrambled version using `scramble_word()`.
-2. Print a welcome message and inform the user how many attempts they have.
+1. Select a random word using choose_word() and store it in a variable named `secret_word` — this variable must exist and be named exactly as shown, as it is used throughout the rest of the function.
+2. Display the scrambled version of the word using scramble_word().
+3. Print a welcome message and inform the user how many attempts they have.
 
 ***Example output.***
 
@@ -159,16 +160,17 @@ You have 5 attempts to guess the original word.
 
 ***Hint.*** Even though `load_words()`, `choose_word()`, and `scramble_word()` were not implemented by you, their descriptions at the beginning of Part 1 tell you exactly what inputs they take and what they return — that is all you need to use them correctly.
 
-### Task 2.2 — Main Interaction Loop [25 Points]
+### Task 2.2 — Main Interaction Loop [20 Points]
 
 Implement the main game loop inside `word_scramble(secret_word)` as follows:
 
 1. While attempts remain, call `input_check(secret_word)` to get a valid guess from the user.
 2. If `has_player_won()` returns `True`, print a congratulatory message and end the game.
-3. Otherwise, decrement attempts by 1, display progress using `get_word_progress()`, and continue to the next turn.
-4. If attempts reach 0 without a correct guess, print `"Sorry, you ran out of guesses. The word was [secret_word]."`
+3. Otherwise, decrement attempts by 1 and display progress using `get_word_progress()`. If the remaining attempts are greater than 0, print `"Attempts left: [attempts]"` and continue to the next turn. If attempts have reached 0, do not print the attempts line — instead, print `"Sorry, you ran out of guesses. The word was [secret_word]."` and end the game.
 
-***Example output.***
+The two examples below show a winning game and a losing game. Your program's output must match the format below exactly. 
+
+***Example output (win).***
 
 `secret_word = "crane"`, `scrambled = "necra"`
 
@@ -187,6 +189,36 @@ Attempts left: 3
 
 Your guess: crane
 Congratulations! You guessed the word: crane
+```
+
+***Example output (lose).***
+
+`secret_word = "ghost"`, `scrambled = "otsgh"`
+
+```text
+Welcome to Word Scramble!
+Scrambled word: otsgh
+You have 5 attempts to guess the original word.
+
+Your guess: thosg
+Incorrect. Progress: *hos*
+Attempts left: 4
+
+Your guess: gshot
+Incorrect. Progress: g***t
+Attempts left: 3
+
+Your guess: hgots
+Incorrect. Progress: **o**
+Attempts left: 2
+
+Your guess: sogth
+Incorrect. Progress: *****
+Attempts left: 1
+
+Your guess: gohst
+Incorrect. Progress: g**st
+Sorry, you ran out of guesses. The word was ghost.
 ```
 
 ***Hints.***
